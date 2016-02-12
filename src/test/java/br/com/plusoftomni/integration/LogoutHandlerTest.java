@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = OmniIntegrationPlatformApplication.class)
-public class LogoutHandlerTest extends AbstractAvayaTest {
+public class LogoutHandlerTest extends AbstractPlusOCXTest {
 
     @Autowired
     private CTIEventHandler handler;
