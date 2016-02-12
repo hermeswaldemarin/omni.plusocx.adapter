@@ -40,7 +40,7 @@ public class PlusOCXLoginHandler {
 
         try {
 
-            plusOCXService.getPlusActivex().login();
+            //plusOCXService
 
             String agentName = "test";
 
@@ -48,7 +48,7 @@ public class PlusOCXLoginHandler {
                     new AbstractMap.SimpleEntry<>("agentName", agentName!=null?agentName:"" ))
                     .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
 
-        } catch (JComException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

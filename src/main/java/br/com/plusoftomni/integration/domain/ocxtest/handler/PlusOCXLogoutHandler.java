@@ -39,7 +39,7 @@ public class PlusOCXLogoutHandler {
         try{
 
 
-            plusOCXService.getPlusActivex().logout();
+            //plusOCXService.getPlusActivex().logout();
 
             callbackDispatcher.dispatch(new CTIResponse("logout", 0, "Logout OK", Collections.unmodifiableMap(Stream.of(
                     new AbstractMap.SimpleEntry<>("arg1", "one"),
