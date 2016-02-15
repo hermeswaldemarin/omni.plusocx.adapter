@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlusOCXService {
 
+    private DispatchProxy component;
+
     public PlusOCXService(){
         try {
-            //
-            // this.plusActivex = new plusActivex().get_plusActivex();
 
-            ComThread.InitSTA();
+
             //PlusoftOCX script = new PlusoftOCX();
            // Thread.sleep(1000);
 
@@ -26,18 +26,17 @@ public class PlusOCXService {
             //Variant result = Dispatch.call(sc, "login" );
            // System.out.println("eval(login) = "+ result);
 
-            Dispatch test = new ActiveXComponent("plusActivexProj.plusActivex");
+            Dispatch realComponent = new ActiveXComponent("plusActivexProj.plusActivex");
 
-            new DispatchEvents(test, new PlusoftOCXListener());
-
-
-            Variant result = Dispatch.call(test, "login");
-
-            System.out.println(result);
+            component = new DispatchProxy(realComponent);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public DispatchProxy getComponent(){
+        return component;
     }
 
 }

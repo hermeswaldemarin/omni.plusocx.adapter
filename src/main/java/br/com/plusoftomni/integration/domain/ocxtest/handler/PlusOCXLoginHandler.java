@@ -1,12 +1,17 @@
 package br.com.plusoftomni.integration.domain.ocxtest.handler;
 
 import br.com.plusoftomni.integration.domain.ocxtest.PlusOCXService;
+import br.com.plusoftomni.integration.domain.ocxtest.PlusoftOCXListener;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CTIResponse;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CallbackDispatcher;
 import br.com.plusoftomni.integration.domain.telephonyplatform.event.LoginEvent;
 import br.com.plusoftomni.integration.infrastructure.telephonyplatform.CTIEvents;
 import br.com.plusoftomni.integration.infrastructure.telephonyplatform.annotation.EventHandler;
 import br.com.plusoftomni.integration.infrastructure.telephonyplatform.annotation.Handle;
+import com.jacob.com.ComThread;
+import com.jacob.com.Dispatch;
+import com.jacob.com.DispatchEvents;
+import com.jacob.com.Variant;
 import ezjcom.JComException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,13 +45,20 @@ public class PlusOCXLoginHandler {
 
         try {
 
-            //plusOCXService
 
-            String agentName = "test";
+            ComThread.InitSTA();
 
-            callbackDispatcher.dispatch(new CTIResponse("login", 0, "Login OK", Collections.unmodifiableMap(Stream.of(
-                    new AbstractMap.SimpleEntry<>("agentName", agentName!=null?agentName:"" ))
-                    .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
+            Thread.sleep(1000);
+
+            Dispatch sc = plusOCXService.getComponent().toDispatch();
+
+            new DispatchEvents(sc, new PlusoftOCXListener(this.callbackDispatcher));
+
+            Variant result = Dispatch.call(sc, "login");
+
+            System.out.println(result);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
