@@ -3,6 +3,7 @@ package br.com.plusoftomni.integration;
 import br.com.plusoftomni.integration.application.telephonyplatform.AbstractTelephonyPlatformTest;
 import br.com.plusoftomni.integration.domain.ocxtest.PlusOCXService;
 import br.com.plusoftomni.integration.domain.telephonyplatform.event.LoginEvent;
+import br.com.plusoftomni.integration.domain.telephonyplatform.event.LogoutEvent;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -22,11 +23,11 @@ public class PlusOCXImplItegrationTests extends AbstractTelephonyPlatformTest {
         loginEvent.setTerminalNumber(AbstractPlusOCXTest.ramal1);
         loginEvent.setAgentNumber(AbstractPlusOCXTest.agente1);
 
-        assertTrue(getPayloadReturnFromEvent("login", loginEvent).contains("READY"));
+        assertTrue(getPayloadReturnFromEvent("login", loginEvent).contains("Login OK"));
     }
 
     protected PlusOCXService buildExtraAvayaService(){
-        PlusOCXService service = new PlusOCXService();
+        PlusOCXService service = new PlusOCXService(null);
 
         return service;
     }
@@ -48,6 +49,14 @@ public class PlusOCXImplItegrationTests extends AbstractTelephonyPlatformTest {
     public void loginShouldReturnReadyMessage() throws Exception {
 
         initLogin();
+
+
+    }
+
+    @Test
+    public void logoutShouldReturnReadyMessage() throws Exception {
+
+        assertTrue(getPayloadReturnFromEvent("logout", new LogoutEvent()).contains("Logout OK"));
 
     }
 

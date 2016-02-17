@@ -23,8 +23,6 @@ public class LogoutHandlerTest extends AbstractPlusOCXTest {
     public void init(){
         super.initLoginEvent();
 
-        handler.dispatch(loginEvent);
-
     }
 
     @Test

@@ -1,13 +1,16 @@
 package br.com.plusoftomni.integration.domain.ocxtest.handler;
 
 import br.com.plusoftomni.integration.domain.ocxtest.PlusOCXService;
+import br.com.plusoftomni.integration.domain.ocxtest.PlusoftOCXListener;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CTIResponse;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CallbackDispatcher;
 import br.com.plusoftomni.integration.domain.telephonyplatform.event.LogoutEvent;
 import br.com.plusoftomni.integration.infrastructure.telephonyplatform.CTIEvents;
 import br.com.plusoftomni.integration.infrastructure.telephonyplatform.annotation.EventHandler;
 import br.com.plusoftomni.integration.infrastructure.telephonyplatform.annotation.Handle;
+import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
+import com.jacob.com.DispatchEvents;
 import com.jacob.com.Variant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,18 +41,8 @@ public class PlusOCXLogoutHandler {
 
     @Handle(CTIEvents.LOGOUT)
     public void execute(LogoutEvent event){
-        try{
-            Dispatch sc = plusOCXService.getComponent().toDispatch();
 
-            Variant result = Dispatch.call(sc, "logout");
+        Variant result = plusOCXService.logout();
 
-            System.out.println(result);
-
-            String agentName = "test";
-
-
-        }catch (Exception e) {
-            logger.error("Logout Error", e);
-        }
     }
 }

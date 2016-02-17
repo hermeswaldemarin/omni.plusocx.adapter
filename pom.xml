@@ -15,7 +15,7 @@
     </parent>
 
     <properties>
-        <start-class>br.com.plusoftomni.OmniIntegrationPlatformApplication</start-class>
+        <start-class>br.com.plusoftomni.integration.OmniIntegrationPlatformApplication</start-class>
     </properties>
 
     <dependencies>
