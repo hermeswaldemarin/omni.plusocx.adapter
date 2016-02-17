@@ -2,11 +2,7 @@ package br.com.plusoftomni.integration.domain.ocxtest;
 
 import br.com.plusoftomni.integration.domain.telephonyplatform.CTIResponse;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CallbackDispatcher;
-import com.jacob.com.Dispatch;
-import com.jacob.com.EnumVariant;
 import com.jacob.com.Variant;
-import com.jacob.com.VariantViaEvent;
-import org.aspectj.weaver.ast.Var;
 
 import java.util.AbstractMap;
 import java.util.Collections;

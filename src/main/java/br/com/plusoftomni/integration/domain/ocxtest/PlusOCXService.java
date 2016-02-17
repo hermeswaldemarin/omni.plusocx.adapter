@@ -1,15 +1,15 @@
 package br.com.plusoftomni.integration.domain.ocxtest;
 
 import br.com.plusoftomni.integration.domain.telephonyplatform.CallbackDispatcher;
-import br.com.plusoftomni.integration.domain.telephonyplatform.event.CTIEvent;
-import br.com.plusoftomni.integration.domain.telephonyplatform.event.LoginEvent;
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.*;
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by hermeswaldemarin on 15/12/15.
