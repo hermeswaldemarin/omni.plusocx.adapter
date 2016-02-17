@@ -98,7 +98,6 @@ public class PlusOCXService{
     public Variant login(){
 
         Callable<Variant> task = () -> {
-
             Variant result = Dispatch.call(callInit(), "login");
             finishCall();
             return result;
@@ -117,7 +116,6 @@ public class PlusOCXService{
 
     public Variant logout(){
         Callable<Variant> task = () -> {
-
             Variant result = Dispatch.call(callInit(), "logout");
             finishCall();
             return result;
