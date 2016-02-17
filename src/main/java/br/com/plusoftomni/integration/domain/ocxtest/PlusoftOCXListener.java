@@ -2,6 +2,7 @@ package br.com.plusoftomni.integration.domain.ocxtest;
 
 import br.com.plusoftomni.integration.domain.telephonyplatform.CTIResponse;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CallbackDispatcher;
+import com.jacob.com.SafeArray;
 import com.jacob.com.Variant;
 
 import java.util.AbstractMap;
@@ -21,9 +22,22 @@ public class PlusoftOCXListener {
     }
 
     public void OnChange(Variant[] args){
+        //((SafeArray)args[0].toJavaObject()).toStringArray()
+        //args[0].getVariantArrayRef()
+
+        if(args[0].toJavaObject().toString().indexOf("logout") > -1){
+
+            if(callbackDispatcher != null){
+                callbackDispatcher.dispatch(new CTIResponse("logout", 0, "Logout OK", Collections.unmodifiableMap(Stream.of(
+                        new AbstractMap.SimpleEntry<>("arg1", "one"),
+                        new AbstractMap.SimpleEntry<>("arg2", "two"))
+                        .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
+            }else{
+                System.out.println("Logout OK");
+            }
 
 
-        if(args[0].toJavaObject().toString().indexOf("login") > -1){
+        } else if(args[0].toJavaObject().toString().indexOf("login") > -1){
 
             String agentName = "test";
 
@@ -35,18 +49,6 @@ public class PlusoftOCXListener {
                 System.out.println("Login OK");
             }
 
-
-
-        }else if(args[0].toJavaObject().toString().indexOf("logout") > -1){
-
-            if(callbackDispatcher != null){
-                callbackDispatcher.dispatch(new CTIResponse("logout", 0, "Logout OK", Collections.unmodifiableMap(Stream.of(
-                        new AbstractMap.SimpleEntry<>("arg1", "one"),
-                        new AbstractMap.SimpleEntry<>("arg2", "two"))
-                        .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
-            }else{
-                System.out.println("Logout OK");
-            }
 
 
         }
