@@ -2,7 +2,6 @@ package br.com.plusoftomni.integration.domain.ocxtest;
 
 import br.com.plusoftomni.integration.domain.telephonyplatform.CTIResponse;
 import br.com.plusoftomni.integration.domain.telephonyplatform.CallbackDispatcher;
-import com.jacob.com.SafeArray;
 import com.jacob.com.Variant;
 
 import java.util.AbstractMap;
